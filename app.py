@@ -22,6 +22,10 @@ def close_connection(exception):
 
 #-------------------------------------------------------------
 
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
 #EXAMPLE OF GET
 @app.route('/getecho/', methods=['GET'])
 def respond():
@@ -42,3 +46,6 @@ def respond():
 
     # Return the response in json format
     return jsonify(response)
+
+if __name__ == '__main__':
+	app.run()
