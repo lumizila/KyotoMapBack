@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify, g
+from flask_cors import CORS
 import sqlite3
 import sys
 
 app = Flask(__name__)
+CORS(app)
 
 DATABASE = 'kyotomap20.db'
 
