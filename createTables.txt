@@ -1,0 +1,18 @@
+DROP TABLE IF EXISTS location;
+DROP TABLE IF EXISTS poly;
+
+CREATE TABLE location(
+    pid INTEGER PRIMARY KEY,
+    pname VARCHAR(100) NOT NULL,
+    jpname VARCHAR(100) NOT NULL,
+    lat FLOAT NOT NULL,
+    lon FLOAT NOT NULL
+   );
+
+CREATE TABLE poly(
+    id INTEGER PRIMARY KEY,
+    pid INT NOT NULL,
+    lat FLOAT NOT NULL,
+    lon FLOAT NOT NULL,
+    FOREIGN KEY (pid) REFERENCES location(pid)
+);

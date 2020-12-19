@@ -32,6 +32,7 @@ def hello_world():
 
 #EXAMPLE OF GET
 @app.route('/getecho/', methods=['GET'])
+@cross_origin()
 def respond():
     # Retrieve the name from url parameter
     echo = request.args.get("echo", None)
