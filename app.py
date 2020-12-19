@@ -1,9 +1,11 @@
-from flask import Flask, request, jsonify, g, CORS
+from flask import Flask, request, jsonify, g
+from flask_cors import CORS, cross_origin
 import sqlite3
 import sys
 
 app = Flask(__name__)
-CORS(app)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 DATABASE = 'kyotomap20.db'
 
@@ -24,8 +26,9 @@ def close_connection(exception):
 #-------------------------------------------------------------
 
 @app.route('/')
+@cross_origin()
 def hello_world():
-    return 'Hello, World!'
+    return 'Hello, cross origin World!'
 
 #EXAMPLE OF GET
 @app.route('/getecho/', methods=['GET'])
