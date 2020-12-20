@@ -103,7 +103,11 @@ def locationCreate():
     print(pname)
     # You can add the test cases you made in the previous function, but in our case here you are just testing the POST functionality
     if (pname and lat and lon):
-        get_db().execute("INSERT INTO 'location' ('pname','jpname','lat','lon') VALUES ("+str(pname)+","+str(jpname)+","+str(lat)+","+str(lon)+")")
+        if(not jpname){
+            jpname = ""
+        }
+        get_db().execute("INSERT INTO 'location' ('pname','jpname','lat','lon') VALUES (\'"+str(pname)+"','"+str(jpname)+"','"+str(lat)+"','"+str(lon)+"');")
+        get_db().commit()
         return jsonify({
             "Message": f"New location successfully created.",
             # Add this option to distinct the POST request
