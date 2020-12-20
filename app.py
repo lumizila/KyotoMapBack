@@ -102,13 +102,14 @@ def locationCreate():
 
     print(pname)
     # You can add the test cases you made in the previous function, but in our case here you are just testing the POST functionality
-    if pname:
+    if (pname && lat && lon):
         return jsonify({
-            "Message": f"Server got via POST, the message: {pname}",
+            cur = get_db().execute("INSERT INTO 'location' ('pname','jpname','lat','lon') VALUES ("+str(pname)+","+str(jpname)+","+str(lat)+","+str(lon)+")")
+            "Message": f"New location successfully created.",
             # Add this option to distinct the POST request
             "METHOD" : "POST"
         })
     else:
         return jsonify({
-            "ERROR": "no string found, please send a string."
+            "ERROR": "pname or lat or lon not found."
         })
