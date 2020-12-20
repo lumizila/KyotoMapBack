@@ -81,7 +81,7 @@ def locationsById():
     response = []
 
     #Getting location by pid
-    cur = get_db().execute("SELECT pid, pname, jpname, lat, lon FROM location WHERE pid = "+str(id)+";")
+    cur = get_db().execute("SELECT pid, pname, jpname, lat, lon FROM location WHERE pid = "+str(pid)+";")
     columns = [column[0] for column in cur.description]
 
     for row in cur.fetchall():
