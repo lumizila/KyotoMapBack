@@ -24,6 +24,7 @@ def close_connection(exception):
         db.close()
 
 #-------------------------------------------------------------
+#TEST FUNCTIONS
 
 @app.route('/')
 @cross_origin()
@@ -54,3 +55,61 @@ def respond():
 
 if __name__ == '__main__':
 	app.run()
+
+#-------------------------------------------------------------
+#REAL API
+
+@app.route('/locations/', methods=['GET'])
+@cross_origin()
+def locations():
+    response = []
+
+    #Getting locations
+    cur = get_db().execute("SELECT pid, pname, jpname, lat, lon FROM location;")
+    columns = [column[0] for column in cur.description]
+
+    for row in cur.fetchall():
+        response.append(dict(zip(columns, row)))
+    
+    cur.close()
+
+    return jsonify(response)
+
+@app.route('/locations/<int:pid>/', methods=['GET'])
+@cross_origin()
+def locationsById():
+    response = []
+
+    #Getting location by pid
+    cur = get_db().execute("SELECT pid, pname, jpname, lat, lon FROM location WHERE pid = "+str(id)+";")
+    columns = [column[0] for column in cur.description]
+
+    for row in cur.fetchall():
+        response.append(dict(zip(columns, row)))
+    
+    cur.close()
+
+    return jsonify(response)
+
+@app.route('/locations/create/', methods=['POST'])
+@cross_origin()
+def locationCreate():
+    response = []
+
+    pname = request.form.get('pname');
+    jpname = request.form.get('jpname');
+    lat = request.form.get('lat');
+    lon = request.form.get('lon');
+
+    print(pname)
+    # You can add the test cases you made in the previous function, but in our case here you are just testing the POST functionality
+    if param:
+        return jsonify({
+            "Message": f"Server got via POST, the message: {param}",
+            # Add this option to distinct the POST request
+            "METHOD" : "POST"
+        })
+    else:
+        return jsonify({
+            "ERROR": "no string found, please send a string."
+        })
