@@ -7,7 +7,7 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-DATABASE = 'kyotomap20.db'
+DATABASE = 'KyotoMap.db'
 
 def get_db():
     db = getattr(g, '_database', None)
