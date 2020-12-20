@@ -77,7 +77,7 @@ def locations():
 
 @app.route('/locations/<int:pid>/', methods=['GET'])
 @cross_origin()
-def locationsById():
+def locationsById(pid):
     response = []
 
     #Getting location by pid
