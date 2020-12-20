@@ -75,7 +75,7 @@ def locations():
 
     return jsonify(response)
 
-@app.route('/locations/<int:pid>/', methods=['GET'])
+@app.route('/locations/<int:pid>', methods=['GET'])
 @cross_origin()
 def locationsById(pid):
     response = []
@@ -91,10 +91,9 @@ def locationsById(pid):
 
     return jsonify(response)
 
-@app.route('/locations/create/', methods=['POST'])
+@app.route('/locations/create', methods=['POST'])
 @cross_origin()
 def locationCreate():
-    response = []
 
     pname = request.form.get('pname');
     jpname = request.form.get('jpname');
@@ -103,9 +102,9 @@ def locationCreate():
 
     print(pname)
     # You can add the test cases you made in the previous function, but in our case here you are just testing the POST functionality
-    if param:
+    if pname:
         return jsonify({
-            "Message": f"Server got via POST, the message: {param}",
+            "Message": f"Server got via POST, the message: {pname}",
             # Add this option to distinct the POST request
             "METHOD" : "POST"
         })
