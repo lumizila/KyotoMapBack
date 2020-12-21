@@ -93,7 +93,7 @@ def locationsById(pid):
 
 @app.route('/locations/delete/<int:pid>', methods=['GET'])
 @cross_origin()
-def locationsById(pid):
+def locationDelete(pid):
     
     if pid is None:
         return jsonify({
