@@ -91,6 +91,24 @@ def locationsById(pid):
 
     return jsonify(response)
 
+@app.route('/locations/delete/<int:pid>', methods=['GET'])
+@cross_origin()
+def locationsById(pid):
+    
+    if pid is None:
+        return jsonify({
+            "ERROR": "No PID was sent."
+        })
+
+    else:
+        #deleting location by pid
+        cur = get_db().execute("DELETE FROM location WHERE pid = "+str(pid)+";")
+        get_db().commit()
+
+        return jsonify({
+            "Message": f"Location was successfully deleted.",
+        })
+
 @app.route('/locations/create', methods=['POST'])
 @cross_origin()
 def locationCreate():
@@ -106,11 +124,7 @@ def locationCreate():
             pname = ""
         get_db().execute("INSERT INTO 'location' ('pname','jpname','lat','lon') VALUES (\'"+str(pname)+"','"+str(jpname)+"','"+str(lat)+"','"+str(lon)+"');")
         get_db().commit()
-        return jsonify({
-            "Message": f"New location successfully created.",
-            # Add this option to distinct the POST request
-            "METHOD" : "POST"
-        })
+       
     else:
         return jsonify({
             "ERROR": "pname or lat or lon not found."
