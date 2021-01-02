@@ -124,6 +124,9 @@ def locationCreate():
             pname = ""
         get_db().execute("INSERT INTO 'location' ('pname','jpname','lat','lon') VALUES (\'"+str(pname)+"','"+str(jpname)+"','"+str(lat)+"','"+str(lon)+"');")
         get_db().commit()
+        return jsonify({
+            "Message": "New location successfully inserted in database."
+        })
        
     else:
         return jsonify({
