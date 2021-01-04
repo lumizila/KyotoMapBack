@@ -6,7 +6,11 @@ CREATE TABLE location(
     pname VARCHAR(100) DEFAULT NULL,
     jpname VARCHAR(100) NOT NULL,
     lat FLOAT NOT NULL,
-    lon FLOAT NOT NULL
+    lon FLOAT NOT NULL,
+    category VARCHAR(100) DEFAULT NULL,
+    label VARCHAR(200) DEFAULT NULL,
+    description VARCHAR(500) DEFAULT NULL,
+    popularity INTEGER DEFAULT 0
    );
 
 CREATE TABLE poly(

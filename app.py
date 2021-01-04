@@ -65,7 +65,7 @@ def locations():
     response = []
 
     #Getting locations
-    cur = get_db().execute("SELECT pid, pname, jpname, lat, lon FROM location;")
+    cur = get_db().execute("SELECT pid, pname, jpname, lat, lon, category, label, description, popularity FROM location;")
     columns = [column[0] for column in cur.description]
 
     for row in cur.fetchall():
@@ -81,7 +81,7 @@ def locationsById(pid):
     response = []
 
     #Getting location by pid
-    cur = get_db().execute("SELECT pid, pname, jpname, lat, lon FROM location WHERE pid = "+str(pid)+";")
+    cur = get_db().execute("SELECT pid, pname, jpname, lat, lon, category, label, description, popularity FROM location WHERE pid = "+str(pid)+";")
     columns = [column[0] for column in cur.description]
 
     for row in cur.fetchall():
@@ -117,12 +117,16 @@ def locationCreate():
     jpname = request.form.get('jpname');
     lat = request.form.get('lat');
     lon = request.form.get('lon');
+    category = request.form.get('category');
+    label = request.form.get('label');
+    description = request.form.get('description');
+    popularity = request.form.get('popularity');
 
     # You can add the test cases you made in the previous function, but in our case here you are just testing the POST functionality
     if (jpname and lat and lon):
         if pname is None:
             pname = ""
-        get_db().execute("INSERT INTO 'location' ('pname','jpname','lat','lon') VALUES (\'"+str(pname)+"','"+str(jpname)+"','"+str(lat)+"','"+str(lon)+"');")
+        get_db().execute("INSERT INTO 'location' ('pname','jpname','lat','lon','category','label','description','popularity') VALUES (\'"+str(pname)+"','"+str(jpname)+"','"+str(lat)+"','"+str(lon)+"','"+str(category)+"','"+str(label)+"','"+str(description)+"','"+str(popularity)+"');")
         get_db().commit()
         return jsonify({
             "Message": "New location successfully inserted in database."

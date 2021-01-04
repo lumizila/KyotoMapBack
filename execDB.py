@@ -45,7 +45,7 @@ else:
 
 		if(table == "location"):
 			cursor = get_db()
-			cursor.executemany("INSERT INTO 'location' ('pname', 'jpname', 'lat','lon') VALUES (?,?,?,?)", data)
+			cursor.executemany("INSERT INTO 'location' ('pname', 'jpname', 'lat', 'lon', 'category', 'label', 'description', 'popularity') VALUES (?,?,?,?,?,?,?,?)", data)
 			cursor.commit()
 			cursor.close()
 
