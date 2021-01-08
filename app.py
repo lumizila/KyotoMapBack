@@ -75,6 +75,22 @@ def locations():
 
     return jsonify(response)
 
+@app.route('/locations/images/', methods=['GET'])
+@cross_origin()
+def locationImages():
+    response = []
+
+    #Getting locations
+    cur = get_db().execute("SELECT id, pid, imageUrl FROM locationImages;")
+    columns = [column[0] for column in cur.description]
+
+    for row in cur.fetchall():
+        response.append(dict(zip(columns, row)))
+    
+    cur.close()
+
+    return jsonify(response)
+
 @app.route('/locations/<int:pid>', methods=['GET'])
 @cross_origin()
 def locationsById(pid):
