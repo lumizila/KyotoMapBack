@@ -55,10 +55,17 @@ else:
 			cursor.commit()
 			cursor.close()
 		
+		elif(table == "locationimages"):
+			cursor = get_db()
+			cursor.executemany("INSERT INTO 'locationImages' ('pid', 'imageUrl') VALUES (?,?)", data)
+			cursor.commit()
+			cursor.close()
+
 		else:
 			print("Table "+sys.argv[2]+" does not exist in the database.")
 			print("Tables that exist are:")
-			print("location, poly")
+			print("location, poly, locationimages")
+
 		print("Program done. Byebye!!")
 	else:
 		print("To use this program to run sqlite code type: python execDB -e <SQLITE CODE FILENAME>")

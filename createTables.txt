@@ -20,3 +20,10 @@ CREATE TABLE poly(
     lon FLOAT NOT NULL,
     FOREIGN KEY (pid) REFERENCES location(pid)
 );
+
+CREATE TABLE locationImages(
+    id INTEGER PRIMARY KEY,
+    pid INT NOT NULL,
+    imageUrl VARCHAR(300) NOT NULL,
+    FOREIGN KEY (pid) REFERENCES location(pid)
+);
