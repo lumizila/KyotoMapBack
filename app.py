@@ -93,7 +93,7 @@ def locationImages():
 
 @app.route('/locations/images/<int:pid>', methods=['GET'])
 @cross_origin()
-def locationImagesPid():
+def locationImagesPid(pid):
     response = []
 
     #Getting pictures by pid
