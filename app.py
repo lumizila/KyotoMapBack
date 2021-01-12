@@ -64,6 +64,7 @@ if __name__ == '__main__':
 def locations():
     response = []  
     images = []
+    locations = []
 
     #Getting images 
     cur1 = get_db().execute("SELECT pid, imageUrl FROM locationImages;")
@@ -73,17 +74,24 @@ def locations():
 
     #Getting locations
     cur2 = get_db().execute("SELECT pid, pname, jpname, lat, lon, category, label, description, popularity, webUrl FROM location;")
-    locations = [column[0] for column in cur2.description]
-
+    columns = [column[0] for column in cur2.description]
     for row in cur2.fetchall():
-        response.append(dict(zip(locations, row)))
+        locations.append(dict(zip(columns, row)))
         
+
+
+    response = [dict() for x in range(len(locations)]
+
     for i in range (len(response)):
-        response[i]["Images"].append("");
+        response[i] = locations[i]
+        
+        images[]
         for j in range (len(images)):
             if (images[j].pid == response[i].pid):
-                 response[i]["Images"].append(images[j].imageUrl);
-    
+                 images["imageUrl"] = images[j].imageUrl);
+        
+        response[i].append(images)
+
     cur1.close()
     cur2.close()
 
