@@ -10,7 +10,8 @@ CREATE TABLE location(
     category VARCHAR(100) DEFAULT NULL,
     label VARCHAR(200) DEFAULT NULL,
     description VARCHAR(500) DEFAULT NULL,
-    popularity INTEGER DEFAULT 0
+    popularity INTEGER DEFAULT 0,
+    webUrl VARCHAR(300) DEFAULT NULL
    );
 
 CREATE TABLE poly(
