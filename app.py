@@ -65,7 +65,6 @@ def locations():
 
     response = []  
     images = []
-    #locations = []
 
     #Getting images 
     cur1 = get_db().execute("SELECT pid, imageUrl FROM locationImages;")
@@ -80,34 +79,15 @@ def locations():
         location = {}
         location = dict(zip(columns, row))
         
-        imgs = {}
-        imgs["imageUrl"] = []
-
+        #imgs = {}
+        #imgs["imageUrl"] = []
+        imgs = []
         for el in images:
             if (el["pid"] == location["pid"]):
-                 imgs["imageUrl"].append(el["imageUrl"])
+                 imgs.append(el["imageUrl"])
 
         location["imageUrls"] = imgs
         response.append(location)
-
-    #for i in range (len(locations)):
-    #    response[i]["pid"] = locations.pid
-    #    response[i]["pname"] = locations.pname
-    #    response[i]["jpname"] = locations.jpname
-    #    response[i]["lat"] = locations.lat
-    #    response[i]["lon"] = locations.lon
-    #    response[i]["category"] = locations.category
-    #    response[i]["label"] = locations.label
-    #    response[i]["description"] = locations.description
-    #    response[i]["popularity"] = locations.popularity
-    #    response[i]["webUrl"] = locations.webUrl
-    #    response[i]["images"] = [1,2,3]
-        
-        #images[]
-        #for j in range (len(images)):
-        #    if (images[j].pid == response[i].pid):
-        #         images["imageUrl"] = images[j].imageUrl);
-        #response[i].append(images)
 
     cur1.close()
     cur2.close()
