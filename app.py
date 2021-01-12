@@ -78,7 +78,7 @@ def locations():
     for row in cur2.fetchall():
         response.append(dict(zip(locations, row)))
         
-    for (int i = 0; i < response.len(); i++):
+    for i in range (len(response)):
         response[i]["Images"].append("");
         for img in images:
             if (img.pid == response[i].pid)
