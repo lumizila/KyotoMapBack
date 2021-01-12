@@ -79,7 +79,15 @@ def locations():
     for row in cur2.fetchall():
         location = {}
         location = dict(zip(columns, row))
-        location["images"] = "test"
+        
+        imgs = {}
+        img["imageUrl"] = []
+
+        for el in images:
+            if (el["pid"] == location["pid"]):
+                 imgs["imageUrl"].append(el["imageUrl"])
+
+        location["imageUrls"] = imgs
         response.append(location)
 
     #for i in range (len(locations)):
