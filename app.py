@@ -69,7 +69,7 @@ def locations():
     cur1 = get_db().execute("SELECT pid, imageUrl FROM locationImages;")
     columns =  [column[0] for column in cur1.description]
     for r in cur1.fetchall():
-        images.append(dict(zip(columns, row)))
+        images.append(dict(zip(columns, r)))
 
     #Getting locations
     cur2 = get_db().execute("SELECT pid, pname, jpname, lat, lon, category, label, description, popularity, webUrl FROM location;")
