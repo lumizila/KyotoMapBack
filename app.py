@@ -81,7 +81,7 @@ def locations():
     for i in range (len(response)):
         response[i]["Images"].append("");
         for j in range (len(images)):
-            if (images[j].pid == response[i].pid)
+            if (images[j].pid == response[i].pid):
                  response[i]["Images"].append(images[j].imageUrl);
     
     cur.close()
