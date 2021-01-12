@@ -80,8 +80,24 @@ def locations():
 def locationImages():
     response = []
 
-    #Getting locations
+    #Getting pictures
     cur = get_db().execute("SELECT id, pid, imageUrl FROM locationImages;")
+    columns = [column[0] for column in cur.description]
+
+    for row in cur.fetchall():
+        response.append(dict(zip(columns, row)))
+    
+    cur.close()
+
+    return jsonify(response)
+
+@app.route('/locations/images/<int:pid>', methods=['GET'])
+@cross_origin()
+def locationImagesPid():
+    response = []
+
+    #Getting pictures by pid
+    cur = get_db().execute("SELECT id, pid, imageUrl FROM locationImages WHERE pid = "+str(pid)+";")
     columns = [column[0] for column in cur.description]
 
     for row in cur.fetchall():
