@@ -81,7 +81,7 @@ def locations():
         location = dict(zip(columns, row))
         
         imgs = {}
-        img["imageUrl"] = []
+        imgs["imageUrl"] = []
 
         for el in images:
             if (el["pid"] == location["pid"]):
