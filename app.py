@@ -67,13 +67,13 @@ def locations():
 
     #Getting images 
     cur1 = get_db().execute("SELECT pid, imageUrl FROM locationImages;")
-    columns =  [column[0] for column in cur.description]
+    columns =  [column[0] for column in cur1.description]
     for r in cur1.fetchall():
         images.append(dict(zip(columns, row)))
-    print("hereeeeeee");
+
     #Getting locations
     cur2 = get_db().execute("SELECT pid, pname, jpname, lat, lon, category, label, description, popularity, webUrl FROM location;")
-    locations = [column[0] for column in cur.description]
+    locations = [column[0] for column in cur2.description]
 
     for row in cur2.fetchall():
         response.append(dict(zip(locations, row)))
@@ -84,7 +84,8 @@ def locations():
             if (images[j].pid == response[i].pid):
                  response[i]["Images"].append(images[j].imageUrl);
     
-    cur.close()
+    cur1.close()
+    cur2.close()
 
     return jsonify(response)
 
