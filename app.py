@@ -62,9 +62,10 @@ if __name__ == '__main__':
 @app.route('/locations/', methods=['GET'])
 @cross_origin()
 def locations():
+
     response = []  
     images = []
-    locations = []
+    #locations = []
 
     #Getting images 
     cur1 = get_db().execute("SELECT pid, imageUrl FROM locationImages;")
@@ -76,21 +77,29 @@ def locations():
     cur2 = get_db().execute("SELECT pid, pname, jpname, lat, lon, category, label, description, popularity, webUrl FROM location;")
     columns = [column[0] for column in cur2.description]
     for row in cur2.fetchall():
-        locations.append(dict(zip(columns, row)))
-        
+        location = {}
+        location = dict(zip(columns, row))
+        location["images"] = "test"
+        response.append(location)
 
-
-    response = [dict() for x in range(len(locations)]
-
-    for i in range (len(response)):
-        response[i] = locations[i]
+    #for i in range (len(locations)):
+    #    response[i]["pid"] = locations.pid
+    #    response[i]["pname"] = locations.pname
+    #    response[i]["jpname"] = locations.jpname
+    #    response[i]["lat"] = locations.lat
+    #    response[i]["lon"] = locations.lon
+    #    response[i]["category"] = locations.category
+    #    response[i]["label"] = locations.label
+    #    response[i]["description"] = locations.description
+    #    response[i]["popularity"] = locations.popularity
+    #    response[i]["webUrl"] = locations.webUrl
+    #    response[i]["images"] = [1,2,3]
         
-        images[]
-        for j in range (len(images)):
-            if (images[j].pid == response[i].pid):
-                 images["imageUrl"] = images[j].imageUrl);
-        
-        response[i].append(images)
+        #images[]
+        #for j in range (len(images)):
+        #    if (images[j].pid == response[i].pid):
+        #         images["imageUrl"] = images[j].imageUrl);
+        #response[i].append(images)
 
     cur1.close()
     cur2.close()
