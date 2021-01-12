@@ -62,14 +62,27 @@ if __name__ == '__main__':
 @app.route('/locations/', methods=['GET'])
 @cross_origin()
 def locations():
-    response = []
+    response = []  
+    images = []
 
+    #Getting images 
+    cur1 = get_db().execute("SELECT pid, imageUrl FROM locationImages;")
+    columns =  [column[0] for column in cur.description]
+    for r in cur1.fetchall():
+        images.append(dict(zip(columns, row)))
+    print("hereeeeeee");
     #Getting locations
-    cur = get_db().execute("SELECT * FROM location;")
-    columns = [column[0] for column in cur.description]
+    cur2 = get_db().execute("SELECT pid, pname, jpname, lat, lon, category, label, description, popularity, webUrl FROM location;")
+    locations = [column[0] for column in cur.description]
 
-    for row in cur.fetchall():
-        response.append(dict(zip(columns, row)))
+    for row in cur2.fetchall():
+        response.append(dict(zip(locations, row)))
+        
+    for (int i = 0; i < response.len(); i++):
+        response[i]["Images"].append("");
+        for img in images:
+            if (img.pid == response[i].pid)
+                 response[i]["Images"].append(img.imageUrl);
     
     cur.close()
 
