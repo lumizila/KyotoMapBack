@@ -65,7 +65,7 @@ def locations():
     response = []
 
     #Getting locations
-    cur = get_db().execute("SELECT pid, pname, jpname, lat, lon, category, label, description, popularity FROM location;")
+    cur = get_db().execute("SELECT * FROM location;")
     columns = [column[0] for column in cur.description]
 
     for row in cur.fetchall():
