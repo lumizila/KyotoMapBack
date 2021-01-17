@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS location;
 DROP TABLE IF EXISTS poly;
+DROP TABLE IF EXISTS locationImages;
 
 CREATE TABLE location(
     pid INTEGER PRIMARY KEY,
